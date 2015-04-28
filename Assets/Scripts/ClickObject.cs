@@ -83,7 +83,6 @@ public class ClickObject : MonoBehaviour, IUseItem, IClickAbleInterface, ISpeech
 
 		}
 
-		return false;
 	}
 
 }

@@ -20,7 +20,7 @@ public class MyPlayer : MonoBehaviour
 	void Update () 
 	{
 		//on left mouse click
-		if (Input.GetMouseButtonDown (0)) 
+		if (Input.GetMouseButtonDown (0) && !EventSystem.current.IsPointerOverGameObject() ) 
 		{
 			RaycastHit hitInfo = new RaycastHit ();
 			Ray mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -65,8 +65,8 @@ public class MyPlayer : MonoBehaviour
 			Ray mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 			
 			if (Inventory.myInv.CurrentSelectedItem == -1 && Physics.Raycast (mouseRay, out hitInfo)) {
-				selectedObject = hitInfo.collider.gameObject;
-				IClickAbleInterface canClick = selectedObject.GetComponent<IClickAbleInterface> ();
+				GameObject hitObject = hitInfo.collider.gameObject;
+				IClickAbleInterface canClick = hitObject.GetComponent<IClickAbleInterface> ();
 				
 				if (canClick != null) {
 
@@ -85,12 +85,14 @@ public class MyPlayer : MonoBehaviour
 		//when releasing mouse
 		else if( Input.GetMouseButtonUp (0) )
 		{
+
 			if ( Inventory.myInv.CurrentSelectedItem == -1 && selectedObject != null )
 			{
 
-				IClickAbleInterface canClick = selectedObject.GetComponent<IClickAbleInterface> ();
-				
-				if (canClick != null) {
+				IClickAbleInterface canClick = selectedObject.GetComponentInChildren<IClickAbleInterface> ();
+
+				if (canClick != null) 
+				{
 					canClick.OnClickRelease ();
 				}
 

@@ -36,6 +36,7 @@ public class NavMeshMovement : MonoBehaviour {
 	
 		agent = GetComponent<NavMeshAgent> ();
 		clickedPosition = transform.position;
+		locationToReach = transform.position;
 
 	}
 	
@@ -239,10 +240,14 @@ public class NavMeshMovement : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter (Collider col){
-		if (col.gameObject.tag == "WayPoint") {
+	void OnTriggerEnter (Collider col)
+	{
+		if (col.gameObject.tag == "WayPoint")
+		{
 			Destroy(wayPoint);
 		}
 	}
+
+
 
 }

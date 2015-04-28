@@ -237,8 +237,12 @@ public class Inventory : MonoBehaviour {
 
 	void StopDragParticle()
 	{
-		pS.enableEmission = false;
-		pS.Stop();
+		if (pS != null) 
+		{
+			pS.enableEmission = false;
+			pS.Stop ();
+		}
+
 		particlePlaying = false;
 	}
 	
