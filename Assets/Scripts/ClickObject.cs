@@ -18,7 +18,6 @@ public class ClickObject : MonoBehaviour, IUseItem, IClickAbleInterface, ISpeech
 
 	SpeechBubble speech;
 	public string actorName;
-	public Sprite test;
 	
 	// Use this for initialization
 	void Start () {
@@ -68,6 +67,7 @@ public class ClickObject : MonoBehaviour, IUseItem, IClickAbleInterface, ISpeech
 	
 	public bool UseItemOnObject(EItem itemType)
 	{
+
 		switch ( itemType )
 		{
 			case EItem.Apple :
@@ -76,6 +76,9 @@ public class ClickObject : MonoBehaviour, IUseItem, IClickAbleInterface, ISpeech
 
 			case EItem.Pear :
 				speech.SetText("Usch! Vill inte ha <color=#ff0000ff>Lakrits!!</color>", 26);
+				return false;
+
+			default :
 				return false;
 
 		}

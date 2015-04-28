@@ -181,11 +181,6 @@ public class Inventory : MonoBehaviour {
 
 	public void TryUseItemOnActor(GameObject actorToUseOn, int itemToUse )
 	{
-
-		Debug.Log (actorToUseOn.name);
-
-		RaycastHit hitInfo = new RaycastHit();
-		Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		
 		if( itemArray[itemToUse] != null )
 		{
@@ -202,7 +197,7 @@ public class Inventory : MonoBehaviour {
 
 				if(itemArray[itemToUse].onUseParticle != null)
 				{
-					Instantiate( itemArray[itemToUse].onUseParticle , hitInfo.point, Quaternion.identity );
+					Instantiate( itemArray[itemToUse].onUseParticle , actorToUseOn.transform.position, Quaternion.identity );
 				}
 
 				if (itemUsed)

@@ -108,15 +108,15 @@ public class MyPlayer : MonoBehaviour
 
 					GameObject hitActor = hitInfo.collider.gameObject;
 
-					movementScript.TrySetUseItemOnObject( Inventory.myInv.CurrentSelectedItem,  hitActor );
-					//Inventory.myInv.TryUseCurrentSelectedItem( hitActor, 0 );
+					IUseItem canUseItem = hitActor.GetComponent<IUseItem> ();
 
-					Inventory.myInv.DeselectItem();
+					if(canUseItem != null)
+					{
+						movementScript.TrySetUseItemOnObject( Inventory.myInv.CurrentSelectedItem,  hitActor );
+					}
 				}
-				else
-				{
-					Inventory.myInv.DeselectItem();
-				}
+
+				Inventory.myInv.DeselectItem();
 
 			}
 
